@@ -5,25 +5,30 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: 'html-loader',
+        test: /\.html$/i,
+        loader: 'html-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [MiniCSSExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.js$/,
+        test: /\.js$/i,
+        loader: 'babel-loader',
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[hash][ext]',
         },
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'img/[hash][ext][query]',
+          filename: 'fonts/[hash][ext]',
         },
       },
     ],
